@@ -46,9 +46,7 @@ class MyClient(discord.Client):
                 
                 if symbol in user_message:
                     clean_string = user_message.removeprefix(str(self.user.mention)).strip()
-                    numbers = clean_string.split(symbol)
-                    for num in numbers:
-                        num.strip()
+                    numbers = [num.strip() for num in clean_string.split(symbol)]
                     num1, num2 = numbers[0], numbers[1]
                     result = calculate(float(num1), float(num2))
                     await message.channel.send(f"{num1}{symbol}{num2} = {result}")
